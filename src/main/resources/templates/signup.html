@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+<section class="body align-items-center">
+
+    <div class="align-items-center">
+        <div class="align-items-center " >
+            <div class="col-md-6 offset-md-3" >
+                <div class="my-card" >
+                    <div th:if="${session.message}" th:classappend="${session.message.getType()}" class="alert alert-primary" role="alert">
+                            <p th:text="${session.message.getContent()}"></p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
+                    <h1 class="text-center">Register Here</h1>
+                    <form th:action="@{/do_register}" method="post" th:object="${user}"> <!--redirect to do_register page after clicking -->
+
+                                <!--NAME FIELD-->
+                        <div class="form-group">
+                            <label for="name_field">Your Name</label>
+                            <input name="name"
+                                    type="text"
+                                   class="form-control"
+                                   id="name_field"
+                                   aria-describedby="emailHelp"
+                                   placeholder="Enter here"
+                                   required
+                                   th:value="${user.name}"
+                            >
+                        </div>
+
+                                <!--EMAIL FEILD-->
+                        <div class="form-group">
+                            <label for="email_field">Your Email</label>
+                            <input name="email"
+                                    type="email"
+                                   class="form-control"
+                                   id="email_field"
+                                   aria-describedby="emailHelp"
+                                   placeholder="Enter here"
+                                   required
+                                   th:value="${user.email}">
+                        </div>
+
+                                <!--PASSWORD FIELD-->
+                        <div class="form-group">
+                            <label for="password_field">Password  </label>
+                            <input  name="password"
+                                    type="password"
+                                   class="form-control"
+                                   id="password_field"
+                                   aria-describedby="emailHelp"
+                                   placeholder="Enter here"
+                                   required>
+                        </div>
+
+                                <!--TEXT FIELD-->
+                        <div class="form-group">
+                            <textarea name="about" th:value="${user.about}" placeholder="Enter about yourself" class="form-control" rows="10"></textarea>
+                        </div>
+
+                                <!-- Button-->
+                        <div class="container text-center">
+                        <button type="submit" class="btn pg-primary text-white">Submit</button>
+                        <button type="reset" class="btn btn-warning text-white">Reset</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
