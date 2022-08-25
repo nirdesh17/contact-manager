@@ -4,15 +4,16 @@ package com.contactmanager.contactmanager.controller;
 import com.contactmanager.contactmanager.entities.User;
 import com.contactmanager.contactmanager.message.message;
 import com.contactmanager.contactmanager.repository.UserRepository;
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 public class HomeController {
@@ -49,22 +50,28 @@ public class HomeController {
         return "about";
     }
 
-    @PostMapping("/do_register")
-    public String register(@ModelAttribute("user") User user, Model model, HttpSession session)
+    @PostMapping("/do_register")// post request to store user data in database by redirecting it to do-register link
+    public String register(@Valid @ModelAttribute("user") User user, BindingResult result1, Model model, HttpSession session)
     {
         try {
-        user.setRole("ROLE_USER");
-        user.setEnabled(true);
-        System.out.println("USER"+user);
-        this.userRepository.save(user);
-            session.setAttribute("message",new message("Registered Successfully","alert-succes"));
-            return "signup";
+            if(result1.hasErrors()){
+//                System.out.println("ERROE"+result1.toString());
+                model.addAttribute("user",user);
+                return "signup";
+            }
+                    user.setRole("ROLE_USER");
+                    user.setEnabled(true);
+                    System.out.println("USER"+user);
+                    this.userRepository.save(user);
+                    model.addAttribute("user", new User());
+                    session.setAttribute("message",new message("Registered Successfully","alert-succes"));
+                    return "signup";
         }
         catch (Exception e)
         {
             e.printStackTrace();
             model.addAttribute("user",user);
-            session.setAttribute("message",new message("Something went wrong"+e.getMessage(),"alert-danger"));
+            session.setAttribute("message",new message("Something went wrong","alert-danger"));
             return "signup";
         }
 

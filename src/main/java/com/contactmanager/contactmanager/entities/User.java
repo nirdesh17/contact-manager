@@ -1,6 +1,11 @@
 package com.contactmanager.contactmanager.entities;
 
 import javax.persistence.*;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +16,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Size(min = 3,max = 20)
+    @NotBlank(message = "Name field is required !!")
     private String name;
-    @Column(unique = true) //for accecpting unique email id
+    @Column(unique = true)
+    @NotBlank(message = "Email can't be empty!")
+    @Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",message = "Invalid email !!")
     private String email;
+    @NotBlank(message = "Password field is required !!")
     private String password;
     private String role;
     private boolean enabled;
@@ -26,17 +36,6 @@ public class User {
 
     public User() {
     }
-
-//    public User(int id, String name, String email, String password, String role, boolean enabled, String imageUrl, String about) {
-//        this.id = id;
-//        this.name = name;
-//        this.email = email;
-//        this.password = password;
-//        this.role = role;
-//        this.enabled = enabled;
-//        this.imageUrl = imageUrl;
-//        this.about = about;
-//    }
 
     public int getId() {
         return id;
