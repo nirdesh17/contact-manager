@@ -51,12 +51,12 @@ public class HomeController {
     }
 
     @PostMapping("/do_register")// post request to store user data in database by redirecting it to do-register link
-    public String register(@Valid @ModelAttribute("user") User user, BindingResult result1, Model model, HttpSession session)
+    public String register(@ModelAttribute("user") @Valid User user, BindingResult result1, Model model, HttpSession session)
     {
         try {
             if(result1.hasErrors()){
-//                System.out.println("ERROE"+result1.toString());
-                model.addAttribute("user",user);
+                System.out.println("ERROE"+result1.toString());
+                model.addAttribute("user",user);// to blank the fields
                 return "signup";
             }
                     user.setRole("ROLE_USER");
@@ -74,6 +74,7 @@ public class HomeController {
             session.setAttribute("message",new message("Something went wrong","alert-danger"));
             return "signup";
         }
+
 
     }
 

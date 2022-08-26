@@ -21,3 +21,7 @@
     align-content: center;
     background: white;
 }
+span {
+    color: red;
+    font-style: italic;
+}
