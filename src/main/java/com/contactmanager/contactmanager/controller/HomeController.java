@@ -5,6 +5,7 @@ import com.contactmanager.contactmanager.entities.User;
 import com.contactmanager.contactmanager.message.message;
 import com.contactmanager.contactmanager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,8 @@ public class HomeController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @RequestMapping("/")
     public String home(Model model)
@@ -61,7 +64,8 @@ public class HomeController {
             }
                     user.setRole("ROLE_USER");
                     user.setEnabled(true);
-                    System.out.println("USER"+user);
+                    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+                    System.out.println("USER"+user.toString());
                     this.userRepository.save(user);
                     model.addAttribute("user", new User());
                     session.setAttribute("message",new message("Registered Successfully","alert-succes"));

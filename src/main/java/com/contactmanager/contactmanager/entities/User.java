@@ -24,7 +24,7 @@ public class User {
     @Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",message = "Invalid email !!")
     private String email;
 
-    @Size(min = 8, max = 10)
+    @NotBlank(message = "Password field is required !!")
     private String password;
     private String role;
     private boolean enabled;
