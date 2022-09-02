@@ -47,7 +47,7 @@ public class configuration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
-                .and().formLogin().loginPage("/login")
+                .and().formLogin().loginPage("/login").loginProcessingUrl("/dologin").defaultSuccessUrl("/user/index")
                 .and().csrf().disable();
     }
 }
