@@ -1,6 +1,8 @@
 package com.contactmanager.contactmanager.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "CONTACT")
@@ -9,10 +11,18 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int cId;
+    @NotBlank(message = "can't be empty!")
     private String name;
+
+    @NotBlank(message = "can't be empty!")
     private String secondName;
     private String work;
+
+    @NotBlank(message = "Email can't be empty!")
     private String email;
+
+    @NotBlank(message = "can't be empty!")
+    @Size(max = 10)
     private String phone;
     private String image;
     @Column(length = 500)

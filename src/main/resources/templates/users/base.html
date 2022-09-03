@@ -16,35 +16,28 @@
 <body>
 
 <!--Navigation bar start-->
-<nav class="navbar navbar-expand-lg navbar-light pg-primary">
+<nav class="navbar navbar-expand-lg navbar-light pg-primary" >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <h1 class="text-white" >Contact Manager</h1>
+  <div class="collapse navbar-collapse text-white" id="navbarSupportedContent"  >
 
-
-  <div class="collapse navbar-collapse text-white" id="navbarSupportedContent" >
-    <h1 >Contact Manager</h1>
     <ul class="navbar-nav ml-auto text-uppercase text-white">
 
       <li class="nav-item active">
         <h3 class="nav-link text-white" th:text="${user.name}"></h3>
       </li>
-
-
+      <a class="nav-link text-white"  th:href="@{/user/index}" href="#">Home<span class="sr-only">(current)</span></a>
+      <a class="nav-link text-white"  th:href="@{/user/person}" href="#">Profile<span class="sr-only">(current)</span></a>
+      <a class="nav-link text-white"  th:href="@{/user/addcontact}" href="#">Add Contact<span class="sr-only"></span></a>
+      <a class="nav-link text-white"  th:href="@{/user/viewcontact}" href="#">View Contact<span class="sr-only"></span></a>
+      <a class="nav-link text-white"  th:href="@{/logout}" href="#">Logout<span class="sr-only"></span></a>
     </ul>
 
   </div>
 </nav>
-<!--Navigation bar end-->
 
-
-
-<!--SIDE BAR-->
-<div class="sidebar">
-  <a  th:href="@{/user/index}" href="#">Home<span class="sr-only">(current)</span></a>
-  <a  th:href="@{/user/person}" href="#">Profile<span class="sr-only">(current)</span></a>
-  <a  th:href="@{/user/addcontact}" href="#">Add Contact<span class="sr-only"></span></a>
-  <a  th:href="@{/user/viewcontact}" href="#">View Contact<span class="sr-only"></span></a>
-  <a  th:href="@{/logout}" href="#">Logout<span class="sr-only"></span></a>
-</div>
-<!--SIDE BAR END-->
 <div class="content">
 <div th:replace="${content}"></div>
 </div>

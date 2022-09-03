@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="users/base::layout(~{::section})">
+      th:replace="users/base::layout(~{::body})" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}">base</title>
-
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body >
-<section>
+<body class="background2 text-center">
 
-        <h1>THis is DashBoard</h1>
+        <form th:action="@{/user/addcontact}" > <!--redirect to sign up page after clicking -->
+            <button  class="btn pg-primary text-white" style="margin-right: 200px;margin-top: 300px">Add Contact</button>
+        </form>
 
-</section>
 </body>
 </html>
