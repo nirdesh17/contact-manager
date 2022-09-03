@@ -7,9 +7,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 
@@ -53,4 +56,21 @@ public class UserController {
         model.addAttribute("title","Profile");
         return "users/viewContact";
     }
+
+    @RequestMapping("/updateuser")//TO show user details in update page
+    public String showUpdateForm( Model model,Principal principal) {
+        String username=principal.getName();
+        User user = userRepository.getUserByUserName(username);
+        model.addAttribute("user", user);
+        model.addAttribute("title","Update User");
+        return "users/userupdate";
+    }
+
+    @PostMapping("/updateduser") //TO save updated user details
+    public String updateuser(Model model, @Valid User user){
+        userRepository.save(user);
+        model.addAttribute("title","User Updated");
+        return "users/profile";
+    }
+
 }
