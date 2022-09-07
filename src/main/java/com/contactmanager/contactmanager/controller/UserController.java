@@ -6,19 +6,20 @@ import com.contactmanager.contactmanager.message.message;
 import com.contactmanager.contactmanager.repository.ContactRepository;
 import com.contactmanager.contactmanager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 
 @Controller
@@ -30,8 +31,6 @@ public class UserController {
 
     @Autowired
     private ContactRepository contactRepository;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     // This method run for every method index, add_contact or etc.
@@ -55,11 +54,6 @@ public class UserController {
         return "users/profile";
     }
 
-    @RequestMapping("/viewcontact")
-    public String viewcontact(Model model){
-        model.addAttribute("title","Profile");
-        return "users/viewContact";
-    }
 
     @RequestMapping("/updateuser")//TO show user details in update page
     public String showUpdateForm( Model model,Principal principal) {
@@ -110,9 +104,26 @@ public class UserController {
             session.setAttribute("message",new message("Something went wrong","alert-danger"));
             return "users/addContact";
         }
-
-
     }
+
+//    per page=5[n]
+//    current page=0[page]
+    @RequestMapping("/viewcontact/{page}")
+    public String viewcontact(@PathVariable("page") Integer page, Model model, Principal principal){
+        model.addAttribute("title","View-Contacts");
+
+        String userName=principal.getName();
+        User user=this.userRepository.getUserByUserName(userName);
+
+        Pageable pageable= PageRequest.of(page,5);
+
+        Page<Contact> contacts=this.contactRepository.getContactsByUser(user.getId(),pageable);
+        model.addAttribute("contacts",contacts);
+        model.addAttribute("currentPage",page);
+        model.addAttribute("totalPage",contacts.getTotalPages());
+        return "users/viewContact";
+    }
+
 
 
 }

@@ -31,14 +31,14 @@
       <a class="nav-link text-white"  th:href="@{/user/index}" href="#">Home<span class="sr-only">(current)</span></a>
       <a class="nav-link text-white"  th:href="@{/user/person}" href="#">Profile<span class="sr-only">(current)</span></a>
       <a class="nav-link text-white"  th:href="@{/user/addcontact}" href="#">Add Contact<span class="sr-only"></span></a>
-      <a class="nav-link text-white"  th:href="@{/user/viewcontact}" href="#">View Contact<span class="sr-only"></span></a>
+      <a class="nav-link text-white"  th:href="@{/user/viewcontact/0}" href="#">View Contact<span class="sr-only"></span></a>
       <a class="nav-link text-white"  th:href="@{/logout}" href="#">Logout<span class="sr-only"></span></a>
     </ul>
 
   </div>
 </nav>
 
-<div class="content">
+<div >
 <div th:replace="${content}"></div>
 </div>
 
