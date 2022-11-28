@@ -20,11 +20,17 @@
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody >
                 <tr th:each="c : ${contacts}">
                     <td th:text="${c.name}"></td>
                     <td th:text="${c.secondName}"></td>
                     <td th:text="${c.phone}"></td>
+                    <td>
+                        <button  class="btn btn-primary text-white">Update</button>
+                        <a th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger text-white">Delete</a>
+                    </td>
+
+
                     <td></td>
                 </tr>
                 </tbody>

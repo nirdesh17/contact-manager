@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -122,6 +124,19 @@ public class UserController {
         model.addAttribute("currentPage",page);
         model.addAttribute("totalPage",contacts.getTotalPages());
         return "users/viewContact";
+    }
+
+    @RequestMapping("/delete/{cid}")
+    public String deleteContact(@PathVariable("cid") Integer cId, Model model,HttpSession session){
+
+//        Optional<Contact> contactOptional=this.contactRepository.findById(cId);
+        Contact contact=this.contactRepository.findById(cId).get();
+        contact.setUser(null);
+
+        this.contactRepository.delete(contact);
+
+        session.setAttribute("message",new message("Contact deleted Successfully","success"));
+        return "redirect:/user/viewcontact/0";
     }
 
 

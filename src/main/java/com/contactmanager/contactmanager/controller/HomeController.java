@@ -24,21 +24,21 @@ public class HomeController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @RequestMapping("/")
+    @RequestMapping("/")// to open home page
     public String home(Model model)
     {
         model.addAttribute("title","HOME PAGE");
         return "home";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/login")// to open login page
     public String login(Model model)
     {
         model.addAttribute("title","LOGIN PAGE");
         return "login";
     }
 
-    @RequestMapping("/signup")
+    @RequestMapping("/signup")// to open signup page
     public String signup(Model model)
     {
         model.addAttribute("title","SIGNUP PAGE");
@@ -46,7 +46,7 @@ public class HomeController {
         return "signup";
     }
 
-    @RequestMapping("/about")
+    @RequestMapping("/about")// to open about page
     public String about(Model model)
     {
         model.addAttribute("title","ABOUT PAGE");
