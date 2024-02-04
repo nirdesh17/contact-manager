@@ -1,6 +1,7 @@
-# Contact Manager Web App
+# Contact Sphere
 
-The Contact Manager is a web application built with Spring Boot, Thymeleaf, and PostgreSQL, providing users with the ability to store and access their family or friends' contact information from anywhere.
+The Contact Sphere is a web application built with Spring Boot, Thymeleaf, and PostgreSQL, providing users with the ability to store and access their family or friend's contact information from anywhere.
+Access the Contact Sphere [here](https://contactsphere-13bt.onrender.com).
 
 ## Features
 
@@ -41,7 +42,7 @@ Open `src/main/resources/application.properties` and configure the database conn
     ```bash
     mvn spring-boot:run
 5. **Access the application**:
-Open a web browser and visit `http://localhost:8080`.
+Open a web browser and visit `http://localhost:8081`.
 
 ## Usage
 1. Register a new account or log in if you already have one.
