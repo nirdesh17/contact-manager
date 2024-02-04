@@ -5,7 +5,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 
 # Copy the JAR file into the container at /app
-COPY target/Contact-Manager-0.0.1-SNAPSHOT.jar /app/ContactManagerApplication.jar
+COPY Contact-Manager-0.0.1-SNAPSHOT.jar /app/ContactManagerApplication.jar
 
 # Expose the port that the application will run on
 EXPOSE 8081
