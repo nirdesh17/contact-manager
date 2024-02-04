@@ -1,0 +1,11 @@
+com\contactmanager\contactmanager\configuration\CustomUserDetail.class
+com\contactmanager\contactmanager\controller\HomeController.class
+com\contactmanager\contactmanager\controller\UserController.class
+com\contactmanager\contactmanager\entities\User.class
+com\contactmanager\contactmanager\configuration\CustomUserDetailService.class
+com\contactmanager\contactmanager\repository\UserRepository.class
+com\contactmanager\contactmanager\message\message.class
+com\contactmanager\contactmanager\repository\ContactRepository.class
+com\contactmanager\contactmanager\configuration\configuration.class
+com\contactmanager\contactmanager\ContactManagerApplication.class
+com\contactmanager\contactmanager\entities\Contact.class

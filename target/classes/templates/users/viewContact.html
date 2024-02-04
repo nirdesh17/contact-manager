@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="users/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">base</title>
+
+</head>
+<body >
+<section>
+
+    <div class="card mr-5 ml-5 mt-5">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Phone No.</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody >
+                <tr th:each="c : ${contacts}">
+                    <td th:text="${c.name}"></td>
+                    <td th:text="${c.secondName}"></td>
+                    <td th:text="${c.phone}"></td>
+                    <td>
+                        <button  class="btn btn-primary text-white">Update</button>
+                        <a th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger text-white">Delete</a>
+                    </td>
+
+
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li th:if="${currentPage!= 0}" class="page-item"><a  class="page-link" href="#" th:href="@{'/user/viewcontact/'+${currentPage-1}}">Previous</a></li>
+                    <li th:each="i:${#numbers.sequence(1,totalPage)}" class="page-item"><a th:href="@{'/user/viewcontact/'+${i-1}}" class="page-link" href="#"><span th:text="${i}"></span></a></li>
+                    <li th:if="${currentPage+1!= totalPages}" class="page-item"><a class="page-link" href="#" th:href="@{'/user/viewcontact/'+${currentPage+1}}">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>
