@@ -1,6 +1,7 @@
 # Contact Sphere
 
 The Contact Sphere is a web application built with Spring Boot, Thymeleaf, and PostgreSQL, providing users with the ability to store and access their family or friend's contact information from anywhere.
+
 Access the Contact Sphere [here](https://contactsphere-13bt.onrender.com).
 
 ## Features
