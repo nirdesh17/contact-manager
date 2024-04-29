@@ -52,7 +52,7 @@ Open a web browser and visit `http://localhost:8081`.
 
 
 ## Contributing
-Feel free to contribute to the development of this extension. Create a pull request with your improvements, bug fixes, or new features.
+Feel free to contribute to the development of this project. Create a pull request with your improvements, bug fixes, or new features.
 
 ### Connect me:
 [Linkedin](https://www.linkedin.com/in/nirdesh-devadiya-55b408209)
