@@ -1,0 +1,18 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "/home/nirdesh/contact-manager/Contact-Manager-0.0.1-SNAPSHOT.jar",
+        "use": "@vercel/java",
+        "config": {
+          "maxLambdaSize": "15mb"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/home/nirdesh/contact-manager/Contact-Manager-0.0.1-SNAPSHOT.jar"
+      }
+    ]
+   }
