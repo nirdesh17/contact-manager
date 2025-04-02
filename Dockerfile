@@ -8,7 +8,8 @@ WORKDIR /app
 COPY Contact-Manager-0.0.1-SNAPSHOT.jar /app/ContactManagerApplication.jar
 
 # Expose the port that the application will run on
-EXPOSE 8081
+EXPOSE 8080
 
 # Specify the command to run on container startup
-CMD ["java", "-jar", "ContactManagerApplication.jar"]
+CMD ["java", "-jar", "ContactManagerApplication.jar", "--server.port=8080"]
+
